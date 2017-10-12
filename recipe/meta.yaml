@@ -14,14 +14,21 @@ source:
     - https://cran.r-project.org/src/contrib/Archive/rex/rex_{{ version }}.tar.gz
   sha256: 6c821ed7e68ccf791b60f3d6d30a9e8081b3d8470967afda10e8404170cfd0db
 
-build:
-  number: 0
-  skip: true  # [win32]
 
+  # patches:
+   # List any patch files here
+   # - fix.patch
+
+build:
+  # If this is a new build for the same version, increment the build number.
+  number: 0
+
+  # This is required to make R link correctly on Linux.
   rpaths:
     - lib/R/lib/
     - lib/
 
+# Suggests: testthat, knitr, rmarkdown, dplyr, ggplot2, lintr, Hmisc, stringr, rvest, roxygen2
 requirements:
   build:
     - r-base
@@ -35,12 +42,19 @@ requirements:
 
 test:
   commands:
-    - $R -e "library('rex')"  # [not win]
+    # You can put additional test commands to be run here.
+    - $R -e "library('rex')"           # [not win]
     - "\"%R%\" -e \"library('rex')\""  # [win]
+
+  # You can also put a file called run_test.py, run_test.sh, or run_test.bat
+  # in the recipe that will be run at test time.
+
+  # requires:
+    # Put any additional test requirements here.
 
 about:
   home: https://github.com/kevinushey/rex
-  license: MIT
+  license: MIT + file LICENSE
   summary: A friendly interface for the construction of regular expressions.
   license_family: MIT
 
@@ -48,3 +62,31 @@ extra:
   recipe-maintainers:
     - johanneskoester
     - bgruening
+    - mingwandroid
+
+# The original CRAN metadata for this package was:
+
+# Package: rex
+# Type: Package
+# Title: Friendly Regular Expressions
+# Version: 1.1.1
+# Authors@R: c( person("Kevin", "Ushey", email = "kevinushey@gmail.com", role = "aut"), person("Jim", "Hester", email = "james.f.hester@gmail.com", role = c("aut", "cre")), person("Robert", "Krzyzanowski", email = "rkrzyzanowski@gmail.com", role = "aut") )
+# Maintainer: Jim Hester <james.f.hester@gmail.com>
+# URL: https://github.com/kevinushey/rex
+# BugReports: https://github.com/kevinushey/rex/issues
+# Description: A friendly interface for the construction of regular expressions.
+# Imports: magrittr, lazyeval
+# License: MIT + file LICENSE
+# Suggests: testthat, knitr, rmarkdown, dplyr, ggplot2, lintr, Hmisc, stringr, rvest, roxygen2
+# VignetteBuilder: knitr
+# Collate: 'aaa.R' 'utils.R' 'escape.R' 'capture.R' 'character_class.R' 'counts.R' 'lookarounds.R' 'match.R' 'or.R' 'rex-mode.R' 'rex.R' 'shortcuts.R' 'wildcards.R' 'zzz.R'
+# RoxygenNote: 5.0.1.9000
+# NeedsCompilation: no
+# Packaged: 2016-12-05 15:10:53 UTC; hornik
+# Author: Kevin Ushey [aut], Jim Hester [aut, cre], Robert Krzyzanowski [aut]
+# Repository: CRAN
+# Date/Publication: 2016-12-05 18:28:48
+
+# See
+# http://docs.continuum.io/conda/build.html for
+# more information about meta.yaml
