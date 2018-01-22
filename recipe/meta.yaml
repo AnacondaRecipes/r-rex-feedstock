@@ -10,8 +10,8 @@ package:
 source:
   fn: rex_{{ version }}.tar.gz
   url:
-    - https://cran.r-project.org/src/contrib/rex_{{ version }}.tar.gz
-    - https://cran.r-project.org/src/contrib/Archive/rex/rex_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/rex_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/Archive/rex/rex_{{ version }}.tar.gz
   sha256: bd3c74ceaf335336f5dd04314d0a791f6311e421a2158f321f5aab275f539a2a
 
 
